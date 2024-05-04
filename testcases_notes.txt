@@ -1,0 +1,91 @@
+Test case for creating notes with user and getting note
+
+data = [{"title": "Note 1", "content": "Hello. This is note 1.", "user_id": "1"},
+        {"title": "Note 2", "content": "Hello. This is note 2.", "user_id": "1"}
+]
+response = requests.post(BASE + "notes/" + str(0), json=data[0])
+print(reponse.json())
+response = requests.post(BASE + "notes/" + str(1), json=data[1])
+print(reponse.json())
+
+response = requests.get(BASE + "notes/0")
+print(response.json())
+
+Test case for creating notes with no title
+
+data = [{"title": "", "content": "Hello this is a note", "user_id": "1"}]
+response = requests.post(BASE + "notes/" + str(0), json=data[0])
+print(reponse.json())
+
+Test case for creating notes with no content
+
+data = [{"title": "How to make homemade pasta", "content": "", "user_id": "1"}]
+response = requests.post(BASE + "notes/" + str(0), json=data[0])
+print(reponse.json())
+
+Test case to get all notes in database
+
+data = [
+    {"title": "Note 1", "content": "Hello. This is note 1.", "user_id": "1"},
+    {"title": "Note 2", "content": "Hi! This is note 2", "user_id": "2"},
+    {"title": "Note 3", "content": "Hi! This is note 3", "user_id": "2"},
+    {"title": "Note 4", "content": "", "user_id": "2"},
+    {"title": "", "content": "Note 5", "user_id": "1"}
+]
+
+for i in range(len(data)):
+    response = requests.post(BASE + "notes/" + str(i), json=data[i])
+    if response.status_code == 201:
+        try:
+            print(response.json())
+        except ValueError: 
+            print("Response content is not valid JSON")
+    else:
+        print(f'Failed request with status code: {response.status_code}, response: {response.text}')
+
+response = requests.get(BASE + "notes/999")
+print(response.json())
+
+Test case for updating a note
+
+data = [{"title": "Note 1", "content": "Hello. This is note 1.", "user_id": "1"},
+        {"title": "Note 2", "content": "Hello. This is note 2.", "user_id": "1"}
+]
+response = requests.post(BASE + "notes/" + str(0), json=data[0])
+print(reponse.json())
+response = requests.post(BASE + "notes/" + str(1), json=data[1])
+print(reponse.json())
+
+input()
+response = requests.patch(BASE + "notes/0", {"content": "The note was changed!"})
+print(response.json())
+
+Test case for keyword search
+
+data = [{"title": "Note 1", "content": "Hello. This is note 1.", "user_id": "1"},
+        {"title": "Note 2", "content": "Hi! This is note 2.", "user_id": "1"}
+]
+response = requests.post(BASE + "notes/" + str(0), json=data[0])
+print(reponse.json())
+response = requests.post(BASE + "notes/" + str(1), json=data[1])
+print(reponse.json())
+
+response = requests.get(BASE + "noteSearch/search", params={"query": "Hi!"})
+print(response.json())
+
+Test case for deleting a note
+
+data = [{"title": "Note 1", "content": "Hello. This is note 1.", "user_id": "1"},
+        {"title": "Note 2", "content": "Hi! This is note 2.", "user_id": "1"}
+]
+response = requests.post(BASE + "notes/" + str(0), json=data[0])
+print(reponse.json())
+response = requests.post(BASE + "notes/" + str(1), json=data[1])
+print(reponse.json())
+
+input()
+response = requests.delete(BASE + "notes/0")
+print(reponse.json())
+input()
+
+

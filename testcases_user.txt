@@ -1,0 +1,28 @@
+Test case for creating users with same login ID
+
+user = [{"username": "alan" , "password": "12345"}]
+response = requests.post(BASE + "api/auth/signup", json=users[0])
+print(response.json())
+response = requests.post(BASE + "api/auth/signup", json=users[0])
+print(response.json())
+
+Test case for logging in users
+user = [{"username": " " , "password": "12345"}]
+response = requests.post(BASE + "api/auth/signup", json=users[0])
+response = requests.post(BASE + "api/auth/login", json=users[0])
+print(response.json())
+
+Test case for user without username
+user = [{"username": " " , "password": "12345"}]
+response = requests.post(BASE + "api/auth/signup", json=users[0])
+print(response.json())
+
+Test case for user without password
+user = [{"username": "bobthebuilder" , "password": ""}]
+response = requests.post(BASE + "api/auth/signup", json=users[0])
+print(response.json())
+
+Test case for user without password or username
+user = [{"username": "" , "password": ""}]
+response = requests.post(BASE + "api/auth/signup", json=users[0])
+print(response.json())
