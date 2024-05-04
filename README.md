@@ -12,10 +12,10 @@ The first textfile is the requirements for the code to allow anyone to run this 
 
 There are also two text files that cover the testcases that can be ran within the testing files. To run the test files, replace the any of the test files with the test desired to be tested. Copy and paste the testcase below the following code to ensure the test files are ran correctly:
 
-'''
+```
 import requests
 
 BASE = "http://127.0.0.1:5000/"
-'''
+```
 
 Overall, I learned a lot about APIs and how user authorization and authentication mechanisms work. This knowledge deepened my understanding of secure web application development, emphasizing the importance of implementing security practices to protect user data and systems. By exploring different authentication methods, such as JWT (JSON Web Tokens), I understood how tokens can be used to maintain user sessions and restrict access to certain API endpoints based on user roles and permissions.
